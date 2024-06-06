@@ -9,14 +9,29 @@ import { authMiddleware } from './middlewares/auth.middleware';
 import { RequestWithUser } from './models/requestWithUser.model';
 import { UserDataDto } from '../dto/users/userData.dto';
 import { ErrorWithStatus } from './httpExceptions/ErrorWithStatus.exception';
+import path from 'path';
 
 export const profileController = express.Router();
 
-const upload = multer({ dest: uploadsPath });
+const uploadPhoto = multer({
+    dest: uploadsPath,
+    limits: {
+        fileSize: 10 * 1024 * 1024,
+    },
+    fileFilter: (req, file, callback) => {
+        const acceptedExtensionsList = ['.jpg', '.png'];
+        const extname = path.extname(file.originalname).toLowerCase();
+        if (acceptedExtensionsList.includes(extname)) {
+            callback(null, true);
+        } else {
+            callback(new ErrorWithStatus(400, 'Расширение файла не подходит'));
+        }
+    },
+});
 
 profileController.put(
     '/profile/:userId',
-    upload.single('photo'),
+    uploadPhoto.single('photo'),
     authMiddleware,
     handleAsyncErrors(
         async (
