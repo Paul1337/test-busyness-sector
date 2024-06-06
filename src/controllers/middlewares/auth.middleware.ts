@@ -4,11 +4,14 @@ import { extractTokenFromRequest } from '../utils/authUtils';
 import { IncorrectTokenError } from '../../domain/busynessExceptions/IncorrenctToken.exception';
 import { RequestWithUser } from '../models/requestWithUser.model';
 import { UserDataDto } from '../../dto/users/userData.dto';
+import { handleAsyncErrors } from '../utils/handleAsyncErrors';
 
-export const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFunction) => {
-    const token = extractTokenFromRequest(req);
-    if (!token) return next(new IncorrectTokenError());
-    const userData = await userService.verifyToken({ jwt: token });
-    req.userData = userData;
-    next();
-};
+export const authMiddleware = handleAsyncErrors(
+    async (req: RequestWithUser, res: Response, next: NextFunction) => {
+        const token = extractTokenFromRequest(req);
+        if (!token) return next(new IncorrectTokenError());
+        const userData = await userService.verifyToken({ jwt: token });
+        req.userData = userData;
+        next();
+    }
+);
