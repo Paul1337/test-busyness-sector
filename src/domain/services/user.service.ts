@@ -3,13 +3,13 @@ import { VerifyTokenInputDto } from '../../dto/users/input/verify-token-input.dt
 import { LoginUserInputDto } from '../../dto/users/input/login-user-input.dto';
 import { RegisterUserInputDto } from '../../dto/users/input/register-user-input.dto';
 import { User } from '../entities/User.entity';
-import { UserExistsError } from '../exceptions/userExists.exception';
+import { UserExistsError } from '../busynessExceptions/userExists.exception';
 import bcrypt from 'bcrypt';
-import { UserNotFoundError } from '../exceptions/userNotFound.exception';
-import { IncorrectPasswordError } from '../exceptions/IncorrectPassword.exception';
+import { UserNotFoundError } from '../busynessExceptions/userNotFound.exception';
+import { IncorrectPasswordError } from '../busynessExceptions/IncorrectPassword.exception';
 import jwt from 'jsonwebtoken';
 import { UserDataDto } from '../../dto/users/userData.dto';
-import { IncorrectTokenError } from '../exceptions/IncorrenctToken.exception';
+import { IncorrectTokenError } from '../busynessExceptions/IncorrenctToken.exception';
 
 export class UserService {
     async register(registerDto: RegisterUserInputDto): Promise<void> {

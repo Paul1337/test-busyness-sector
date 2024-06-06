@@ -1,12 +1,12 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { IncorrectTokenError } from '../domain/exceptions/IncorrenctToken.exception';
+import { IncorrectTokenError } from '../domain/busynessExceptions/IncorrenctToken.exception';
 import { userService } from '../domain/services/user.service';
 import { LoginUserInputDto } from '../dto/users/input/login-user-input.dto';
 import { RegisterUserInputDto } from '../dto/users/input/register-user-input.dto';
 import { handleAsyncErrors } from './utils/handleAsyncErrors';
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
-import { ValidationError } from '../domain/exceptions/Validation.exception';
+import { ValidationError } from './httpExceptions/Validation.exception';
 import { validateBody } from './utils/validateBody';
 import { extractTokenFromRequest } from './utils/authUtils';
 

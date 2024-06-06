@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { userService } from '../../domain/services/user.service';
 import { extractTokenFromRequest } from '../utils/authUtils';
-import { IncorrectTokenError } from '../../domain/exceptions/IncorrenctToken.exception';
+import { IncorrectTokenError } from '../../domain/busynessExceptions/IncorrenctToken.exception';
 import { RequestWithUser } from '../models/requestWithUser.model';
 import { UserDataDto } from '../../dto/users/userData.dto';
 

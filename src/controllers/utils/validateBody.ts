@@ -1,6 +1,6 @@
 import { ClassConstructor, plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
-import { ValidationError } from '../../domain/exceptions/Validation.exception';
+import { ValidationError } from '../httpExceptions/Validation.exception';
 
 export const validateBody = async <T extends object>(Class: ClassConstructor<T>, body: T) => {
     const dto = plainToClass(Class, body);

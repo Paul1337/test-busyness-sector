@@ -8,7 +8,7 @@ import { validateBody } from './utils/validateBody';
 import { authMiddleware } from './middlewares/auth.middleware';
 import { RequestWithUser } from './models/requestWithUser.model';
 import { UserDataDto } from '../dto/users/userData.dto';
-import { ErrorWithStatus } from '../domain/exceptions/ErrorWithStatus.exception';
+import { ErrorWithStatus } from './httpExceptions/ErrorWithStatus.exception';
 
 export const profileController = express.Router();
 

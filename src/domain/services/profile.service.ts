@@ -2,7 +2,7 @@ import { dataSource } from '../../data/data-source';
 import { UpdateProfileInputDto } from '../../dto/profile/input/update-profile-input-dto';
 import { ProfileOutputDto } from '../../dto/profile/output/profile-output-dto';
 import { User } from '../entities/User.entity';
-import { UserNotFoundError } from '../exceptions/userNotFound.exception';
+import { UserNotFoundError } from '../busynessExceptions/userNotFound.exception';
 
 const PageCount = 10;
 
