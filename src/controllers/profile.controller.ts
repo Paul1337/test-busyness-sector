@@ -42,7 +42,8 @@ profileController.get(
     '/profiles',
     handleAsyncErrors(async (req: Request, res: Response, next: NextFunction) => {
         const pageNumber = Number(req.query.page);
-        console.log(req.query.page);
+        if (isNaN(pageNumber)) throw new ErrorWithStatus(400, 'Номер страницы не номер');
+        if (pageNumber < 1) throw new ErrorWithStatus(400, 'Номер страницы должен быть положительный');
         const profilesInfos = await profileService.getProfiles(pageNumber);
         res.send(profilesInfos);
     })
