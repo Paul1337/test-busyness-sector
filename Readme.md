@@ -1,5 +1,7 @@
 preparation:
 
+0. No need for DB damp because of using typeorm with `sync = true`
+
 1. installing dependencies:
    `yarn install`
 
